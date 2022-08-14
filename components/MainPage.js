@@ -9,9 +9,8 @@ const MainPage = () => {
     console.log(source);
   },[source])
   return (
-    <div>
+    <div className="flex justify-center">
       <Uplaod {...{setSource}} />
-      <p>{source}</p>
     </div>
   )
 }

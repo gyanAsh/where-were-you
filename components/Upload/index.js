@@ -38,7 +38,7 @@ const Uplaod = ({setSource}) => {
     }
 
   return (
-      <div>
+      <div className="flex items-center justify-center w-1/2 p-2 border-2 border-style border-slate-800">
           <input 
               ref={inputRef}
               onChange={onUploadChange}
@@ -53,6 +53,7 @@ const Uplaod = ({setSource}) => {
 
               control={
                   <button
+                      className="w-60 h-72"
                       id={styles.upload_button}
                       data-drag={uploadDrag}
                       onClick={onUploadClick}
@@ -61,7 +62,10 @@ const Uplaod = ({setSource}) => {
                       onDragOver={onUploadDragOver}
                       onDrop={onUploadDrop}
                   >
-                      <span>Choose or drag file</span>
+                    <span className="">
+                        <p>Choose or drag file</p>
+                        <i className="fa-solid fa-plus"></i>
+                    </span>
                   </button>
               }
           />

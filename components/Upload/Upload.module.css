@@ -3,8 +3,12 @@
 }
 
 #upload_button:hover{
-    border:dashed 2px black;
+    border:dashed 1px black;
 }
+#upload_button{
+    border:dashed 1px rgba(0, 0, 0, 0.287);
+}
+
 
 #upload_button > span{
     pointer-events: none;
