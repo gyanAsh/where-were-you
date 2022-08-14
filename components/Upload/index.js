@@ -51,7 +51,7 @@ const Uplaod = ({setSource,setLocation,location}) => {
     }
 
   return (
-      <div className="flex items-center justify-center w-1/2 p-2 border-2 border-style border-slate-300">
+      <div className="flex items-center justify-center w-1/2 border-2 border-style border-slate-300">
           <input 
               ref={inputRef}
               onChange={onUploadChange}
@@ -66,7 +66,7 @@ const Uplaod = ({setSource,setLocation,location}) => {
 
               control={
                   <button
-                      className="w-60 h-72"
+                      className="w-full h-72"
                       id={styles.upload_button}
                       data-drag={uploadDrag}
                       onClick={onUploadClick}

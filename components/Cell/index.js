@@ -11,7 +11,7 @@ const Cell = ({
     disabled
  }) => {
   return (
-      <div className="flex flex-col justify-center items-center gap-2" style={{...style,color}} data-tooltip={tooltip}>
+      <div className="flex flex-col justify-center items-center gap-2 w-full bg-white" style={{...style,color}} data-tooltip={tooltip}>
           {(text || icon) && (
               <div className="flex gap-2" disabled={disabled ? true:undefined}>
                   {text && <span>{text}</span>}
@@ -22,7 +22,7 @@ const Cell = ({
               <div
                   id={controlId}
                   disabled={disabled ? true : undefined}
-                  className="h-72"
+                  className="h-72 w-full bg-cyan-200"
               >
                   {control}
               </div>
