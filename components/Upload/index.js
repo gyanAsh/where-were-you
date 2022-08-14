@@ -3,18 +3,31 @@ import styles from './Upload.module.css';
 import Cell from '../Cell';
 
 // For user to upload files
-const Uplaod = ({setSource}) => {
+const Uplaod = ({setSource,setLocation,location}) => {
 
     const inputRef = useRef(null);
     const [uploadDrag, setUploadDrag] = useState(false);
 
     const onUpload = async(target) => {
-        const file = target?.files[0];
-        const text = (await file.text()) || '';
+        let file = target?.files[0];
+        EXIF.getData(file, () => {
+            if (!file.exifdata.GPSLatitude || !file.exifdata.GPSLongitude)
+                return;
+            setLocation({
+                ...location,
+                latitude: file.exifdata.GPSLatitude[0].toString(),
+                longitude: file.exifdata.GPSLongitude[0].toString()
+            });
+        });
         
-        setSource(text);
+        setSource(URL.createObjectURL(file));
+        setLocation({
+            ...location,
+            latitude: "Data not found",
+            longitude: "Data not found"
+        });
 
-        if (text && inputRef.current) {
+        if (file && inputRef.current) {
             inputRef.current.value = null
         }
     }
@@ -38,7 +51,7 @@ const Uplaod = ({setSource}) => {
     }
 
   return (
-      <div className="flex items-center justify-center w-1/2 p-2 border-2 border-style border-slate-800">
+      <div className="flex items-center justify-center w-1/2 p-2 border-2 border-style border-slate-300">
           <input 
               ref={inputRef}
               onChange={onUploadChange}
