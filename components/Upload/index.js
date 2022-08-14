@@ -11,21 +11,23 @@ const Uplaod = ({setSource,setLocation,location}) => {
     const onUpload = async(target) => {
         let file = target?.files[0];
         EXIF.getData(file, () => {
-            if (!file.exifdata.GPSLatitude || !file.exifdata.GPSLongitude)
-                return;
-            setLocation({
+            if (!file.exifdata.GPSLatitude || !file.exifdata.GPSLongitude) {
+                setLocation({
+                ...location,
+                latitude: "Not found",
+                longitude: "Not found"
+            });
+            } else {
+                setLocation({
                 ...location,
                 latitude: file.exifdata.GPSLatitude[0].toString(),
                 longitude: file.exifdata.GPSLongitude[0].toString()
             });
+            }
         });
         
         setSource(URL.createObjectURL(file));
-        setLocation({
-            ...location,
-            latitude: "Data not found",
-            longitude: "Data not found"
-        });
+        
 
         if (file && inputRef.current) {
             inputRef.current.value = null
